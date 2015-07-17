@@ -1,0 +1,38 @@
+--- MG5_aMC_v2_2_2/madgraph/various/cluster.py	2015-05-16 16:08:35.000000000 -0400
++++ /scratch/anlevin/cluster.py.sl6	2015-05-16 16:09:43.000000000 -0400
+@@ -92,10 +92,7 @@
+         self.submitted = 0
+         self.submitted_ids = []
+         self.finish = 0
+-        if 'cluster_queue' in opts:
+-            self.cluster_queue = opts['cluster_queue']
+-        else:
+-            self.cluster_queue = 'madgraph'
++	self.cluster_queue = None
+         if 'cluster_temp_path' in opts:
+             self.temp_dir = opts['cluster_temp_path']
+         else:
+@@ -790,6 +787,11 @@
+         else:
+             requirement = ''
+ 
++	if requirement:
++	   requirement += ' && (OpSysAndVer == "SL6") && (Arch == "X86_64")'    
++	else:
++	   requirement = 'Requirements = (OpSysAndVer == "SL6") && (Arch == "X86_64")'		   
++
+         if cwd is None:
+             cwd = os.getcwd()
+         if stdout is None:
+@@ -864,6 +866,11 @@
+         else:
+             requirement = ''
+ 
++	if requirement:
++	   requirement += ' && (OpSysAndVer == "SL6") && (Arch == "X86_64")'    
++	else:
++	   requirement = 'Requirements = (OpSysAndVer == "SL6") && (Arch == "X86_64")'		   
++
+         if cwd is None:
+             cwd = os.getcwd()
+         if stdout is None:
