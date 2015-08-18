@@ -431,8 +431,8 @@ fi
 cd ../
 
 echo "launch ${name}" > launch.dat
-echo "reweight=ON" >> launch.dat
-echo "$CARDSDIR/${name}_reweight_card.dat" >> launch.dat
+#echo "reweight=ON" >> launch.dat
+#echo "$CARDSDIR/${name}_reweight_card.dat" >> launch.dat
 
 ./$MGBASEDIRORIG/bin/mg5_aMC launch.dat
 
