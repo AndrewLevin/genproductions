@@ -657,10 +657,10 @@ if __name__ == "__main__":
             if os.path.exists('JHUGen') :
                 os.system('cp -p JHUGen '+args.folderName+'/.')
 
-        if not os.path.exists(args.folderName+'/powheg.input') :
-            os.system('cp -p '+args.inputTemplate+' '+
+        #if not os.path.exists(args.folderName+'/powheg.input') :
+        os.system('cp -p '+args.inputTemplate+' '+
                       args.folderName+'/powheg.input')
-            os.system('sed -i "s/^numevts.*/numevts '+args.numEvents+'/" '+
+        os.system('sed -i "s/^numevts.*/numevts '+args.numEvents+'/" '+
                       args.folderName+'/powheg.input')
 
 #        runCommand ('mkdir ' + args.folderName)
