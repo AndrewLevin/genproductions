@@ -111,12 +111,12 @@ def runParallelXgrid(parstage, xgrid, folderName, nEvents, njobs, powInputName, 
 
     inputName = folderName + "/powheg.input"
 
-    sedcommand = 'sed -i "s/NEVENTS/' + nEvents + '/ ; s/SEED/'+rndSeed+'/ ; s/.parallelstage.*/parallelstage '+parstage+'/ ; s/.xgriditeration.*/xgriditeration '+xgrid+'/ ; s/.manyseeds.*/manyseeds 1/ ; s/fakevirt.*// " '+inputName
+    sedcommand = 'sed -i "s/NEVENTS/' + nEvents + '/ ; s/SEED/'+rndSeed+'/ ; s/parallelstage.*/parallelstage '+parstage+'/ ; s/xgriditeration.*/xgriditeration '+xgrid+'/ ; s/manyseeds.*/manyseeds 1/ ; s/fakevirt.*// " '+inputName
 
     #print sedcommand
     runCommand(sedcommand)
 
-    if(parstage == '1' and xgrid == '1') :
+    if(parstage == '1') :
         if not 'parallelstage' in open(inputName).read() :
             runCommand("echo \'\n\nparallelstage "+parstage+"\' >> "+inputName)
         if not 'xgriditeration' in open(inputName).read() :
