@@ -658,10 +658,7 @@ if __name__ == "__main__":
                 os.system('cp -p JHUGen '+args.folderName+'/.')
 
         #if not os.path.exists(args.folderName+'/powheg.input') :
-        os.system('cp -p '+args.inputTemplate+' '+
-                      args.folderName+'/powheg.input')
-        os.system('sed -i "s/^numevts.*/numevts '+args.numEvents+'/" '+
-                      args.folderName+'/powheg.input')
+
 
 #        runCommand ('mkdir ' + args.folderName)
 #        runCommand ('cp -p pwgseeds.dat ' + args.folderName)
@@ -672,6 +669,11 @@ if __name__ == "__main__":
                 fseed.write(str(ii)+'\n')
 #        #FIXME this is a crude hardcoded trick to overcome some problems in LHAPDF usage
 #        runCommand ('ln -s /afs/cern.ch/user/g/govoni/work/HiggsPlusJets/lhapdf/share/lhapdf/PDFsets/CT10.LHgrid ./'  + args.folderName)
+
+    os.system('cp -p '+args.inputTemplate+' '+
+                      args.folderName+'/powheg.input')
+    os.system('sed -i "s/^numevts.*/numevts '+args.numEvents+'/" '+
+                      args.folderName+'/powheg.input')
 
     if args.parstage == '4' :    
         runCommand (eoscmd + ' mkdir /eos/cms/store/user/${user}/LHE/powheg/' + args.eosFolder, 1, 1)
