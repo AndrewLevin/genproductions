@@ -670,9 +670,10 @@ if __name__ == "__main__":
 #        #FIXME this is a crude hardcoded trick to overcome some problems in LHAPDF usage
 #        runCommand ('ln -s /afs/cern.ch/user/g/govoni/work/HiggsPlusJets/lhapdf/share/lhapdf/PDFsets/CT10.LHgrid ./'  + args.folderName)
 
-    os.system('cp -p '+args.inputTemplate+' '+
+    if args.parstage != '0':            
+        os.system('cp -p '+args.inputTemplate+' '+
                       args.folderName+'/powheg.input')
-    os.system('sed -i "s/^numevts.*/numevts '+args.numEvents+'/" '+
+        os.system('sed -i "s/^numevts.*/numevts '+args.numEvents+'/" '+
                       args.folderName+'/powheg.input')
 
     if args.parstage == '4' :    
