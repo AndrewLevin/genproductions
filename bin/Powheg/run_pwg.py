@@ -271,18 +271,28 @@ export POWHEGSRC=powhegboxV2_Jun2015.tar.gz
 
 echo 'D/L POWHEG source...'
 
-if [ ! -f ${POWHEGSRC} ]; then
-  wget --no-check-certificate http://cms-project-generators.web.cern.ch/cms-project-generators/${SCRAM_ARCH}/powheg/V2.0/src/${POWHEGSRC} || fail_exit "Failed to get powheg tar ball "
-fi
+#if [ ! -f ${POWHEGSRC} ]; then
+#  wget --no-check-certificate http://cms-project-generators.web.cern.ch/cms-project-generators/${SCRAM_ARCH}/powheg/V2.0/src/${POWHEGSRC} || fail_exit "Failed to get #powheg tar ball "
+#fi
 
-tar zxf ${POWHEGSRC}
+#tar zxf ${POWHEGSRC}
 #
 
-if [ -e POWHEG-BOX/${process}.tgz ]; then
-  cd POWHEG-BOX/
-  tar xvf ${process}.tgz
-  cd -
-fi
+#if [ -e POWHEG-BOX/${process}.tgz ]; then
+#  cd POWHEG-BOX/
+#  tar xvf ${process}.tgz
+#  cd -
+#fi
+
+svn checkout --username anonymous --password anonymous svn://powhegbox.mib.infn.it/trunk/POWHEG-BOX-V2 POWHEG-BOX
+
+cd POWHEG-BOX
+
+svn co --username anonymous --password anonymous svn://powhegbox.mib.infn.it/trunk/User-Processes-V2/vbf_wp_wp
+
+cd -
+
+echo "andrew debug 1"
 
 patch -l -p0 -i ${WORKDIR}/patches/pdfweights.patch
 cd POWHEG-BOX/${process}
