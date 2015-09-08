@@ -292,8 +292,6 @@ svn co --username anonymous --password anonymous svn://powhegbox.mib.infn.it/tru
 
 cd -
 
-echo "andrew debug 1"
-
 patch -l -p0 -i ${WORKDIR}/patches/pdfweights.patch
 cd POWHEG-BOX/${process}
 
