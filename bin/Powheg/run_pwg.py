@@ -89,7 +89,7 @@ def prepareJobForEvents (tag, i, folderName, EOSfolder) :
 
     f.write ('pwd' + '\n')
     f.write ('ls' + '\n')
-    f.write ('echo ' + str (i) + ' | ' + rootfolder + '/pwhg_main &> log_' + tag + '.log &' + '\n')
+    f.write ('echo ' + str (i) + ' | ' + rootfolder + '/pwhg_main' + '\n')
     f.write ('cp -p log_' + tag + '.log ' + rootfolder + '/' + folderName + '/. \n')
     #lhefilename = 'pwgevents-{:04d}.lhe'.format(i) 
 
