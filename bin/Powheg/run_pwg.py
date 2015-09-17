@@ -669,7 +669,7 @@ if __name__ == "__main__":
 
 
 #        runCommand ('mkdir ' + args.folderName)
-        runCommand ('cp -p pwgseeds.dat ' + args.folderName)
+        runCommand ('cp -p my_working_directory_wp_wp/POWHEG-BOX/vbf_wp_wp/testrun/pwgseeds.dat ' + args.folderName)
         #res = runCommand('ls ' + args.folderName + '/pwgseeds.dat')
         #if res != 0 :
         #    fseed = open(args.folderName + '/pwgseeds.dat', 'w')
