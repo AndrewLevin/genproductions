@@ -669,12 +669,12 @@ if __name__ == "__main__":
 
 
 #        runCommand ('mkdir ' + args.folderName)
-#        runCommand ('cp -p pwgseeds.dat ' + args.folderName)
-        res = runCommand('ls ' + args.folderName + '/pwgseeds.dat')
-        if res != 0 :
-            fseed = open(args.folderName + '/pwgseeds.dat', 'w')
-            for ii in range(1, 501) :
-                fseed.write(str(ii)+'\n')
+        runCommand ('cp -p pwgseeds.dat ' + args.folderName)
+        #res = runCommand('ls ' + args.folderName + '/pwgseeds.dat')
+        #if res != 0 :
+        #    fseed = open(args.folderName + '/pwgseeds.dat', 'w')
+        #    for ii in range(1, 501) :
+        #        fseed.write(str(ii)+'\n')
 #        #FIXME this is a crude hardcoded trick to overcome some problems in LHAPDF usage
 #        runCommand ('ln -s /afs/cern.ch/user/g/govoni/work/HiggsPlusJets/lhapdf/share/lhapdf/PDFsets/CT10.LHgrid ./'  + args.folderName)
 
