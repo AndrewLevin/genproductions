@@ -2,7 +2,7 @@
 vdecaymodew1 135  ! PDG code for charged decay product of 1st vector boson (11:e-; -11:e+; ...)  
 vdecaymodew2 135  ! PDG code for charged decay product of 2nd vector boson (11:e-; -11:e+; ...)  
 zerowidth 0    ! default 1 (onshell Ws); if 0 generate Ws offshell
-numevts 5000    ! number of events to be generated
+numevts 1000    ! number of events to be generated
 ih1   1           ! hadron 1 (1 for protons, -1 for antiprotons)
 ih2   1           ! hadron 2 (1 for protons, -1 for antiprotons)
 ndns1 131         ! pdf set for hadron 1 (mlm numbering)
