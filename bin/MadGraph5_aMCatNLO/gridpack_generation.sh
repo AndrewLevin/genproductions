@@ -148,6 +148,9 @@ if [ ! -d ${AFS_GEN_FOLDER}/${name}_gridpack ]; then
 
   patch -l -p0 -i $PRODHOME/patches/mgfixes.patch
   patch -l -p0 -i $PRODHOME/patches/models.patch
+  patch -l -p0 -i $PRODHOME/patches/cluster.patch 
+
+  exit
 
   cd $MGBASEDIRORIG
 
@@ -179,18 +182,18 @@ if [ ! -d ${AFS_GEN_FOLDER}/${name}_gridpack ]; then
       export LSB_JOB_REPORT_MAIL="N"
   
       echo "set run_mode  1" >> mgconfigscript
-      echo "set cluster_type lsf" >> mgconfigscript
-      echo "set cluster_queue $queue" >> mgconfigscript
+      echo "set cluster_type condor" >> mgconfigscript
+      #echo "set cluster_queue $queue" >> mgconfigscript
       echo "set cluster_status_update 60 30" >> mgconfigscript
       echo "set cluster_nb_retry 3" >> mgconfigscript
       echo "set cluster_retry_wait 300" >> mgconfigscript 
 #       echo "set cluster_local_path `${LHAPDFCONFIG} --datadir`" >> mgconfigscript 
-      if [[ ! "$RUNHOME" =~ ^/afs/.* ]]; then
-          echo "local path is not an afs path, batch jobs will use worker node scratch space instead of afs"
-          echo "set cluster_temp_path `echo $RUNHOME`" >> mgconfigscript 
-          echo "set cluster_retry_wait 30" >> mgconfigscript 
-          isscratchspace=1
-      fi      
+      #if [[ ! "$RUNHOME" =~ ^/afs/.* ]]; then
+      #    echo "local path is not an afs path, batch jobs will use worker node scratch space instead of afs"
+      #    echo "set cluster_temp_path `echo $RUNHOME`" >> mgconfigscript 
+      #    echo "set cluster_retry_wait 30" >> mgconfigscript 
+      #    isscratchspace=1
+      #fi      
   fi
 
   echo "save options" >> mgconfigscript
