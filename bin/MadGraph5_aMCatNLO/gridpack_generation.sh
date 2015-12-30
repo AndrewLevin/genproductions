@@ -150,8 +150,6 @@ if [ ! -d ${AFS_GEN_FOLDER}/${name}_gridpack ]; then
   patch -l -p0 -i $PRODHOME/patches/models.patch
   patch -l -p0 -i $PRODHOME/patches/cluster.patch 
 
-  exit
-
   cd $MGBASEDIRORIG
 
   #if lhapdf6 external is available then above points to lhapdf5 and needs to be overridden
