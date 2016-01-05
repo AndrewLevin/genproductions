@@ -207,6 +207,7 @@ if [ ! -d ${AFS_GEN_FOLDER}/${name}_gridpack ]; then
   PATH=`${LHAPDFCONFIG} --prefix`/bin:${PATH} make
   cd ..
   
+
   #load extra models if needed
   if [ -e $CARDSDIR/${name}_extramodels.dat ]; then
     echo "Loading extra models specified in $CARDSDIR/${name}_extramodels.dat"
@@ -220,7 +221,7 @@ if [ ! -d ${AFS_GEN_FOLDER}/${name}_gridpack ]; then
         cd models
         if [[ $model == *".zip"* ]]; then
           unzip ../$model
-        elif [[ $model == *".tgz"* ]]; then
+        elif [[ $model == *".tar.gz"* ]] || [[ $model == *".tgz"* ]]; then
           tar zxvf ../$model
         elif [[ $model == *".tar"* ]]; then
           tar xavf ../$model
@@ -364,6 +365,11 @@ cd processtmp
 
 echo "copying run_card.dat file"
 cp $CARDSDIR/${name}_run_card.dat ./Cards/run_card.dat
+
+if [ -e $CARDSDIR/${name}_param_card.dat ]; then
+    echo "copying param_card.dat file"
+    cp $CARDSDIR/${name}_param_card.dat ./Cards/param_card.dat
+fi
 
 #copy provided custom fks params or cuts
 if [ -e $CARDSDIR/${name}_cuts.f ]; then
