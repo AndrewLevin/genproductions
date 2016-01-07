@@ -1,0 +1,31 @@
+--- MG5_aMC_v2_3_3/madgraph/interface/reweight_interface.py	2015-10-26 02:18:52.000000001 +0100
++++ MG5_aMC_v2_3_2_2_aptch/madgraph/interface/reweight_interface.py	2015-12-10 15:39:08.000000001 +0100
+@@ -885,8 +885,8 @@
+         if self.rwgt_dir:
+             self.save_to_pickle()
+             
+-    def __del__(self):
+-        self.do_quit('')
++#    def __del__(self):
++#        self.do_quit('')
+ 
+     
+     def adding_me(self, matrix_elements, path):
+--- MG5_aMC_v2_3_3/madgraph/interface/common_run_interface.py	2015-10-26 02:18:52.000000001 +0100
++++ MG5_aMC_v2_3_2_2_aptch/madgraph/interface/common_run_interface.py	2015-12-10 15:40:02.000000001 +0100
+@@ -1068,6 +1068,7 @@
+             self.results.def_current(self.run_name, self.run_tag)
+         except Exception:
+             pass
++        reweight_cmd.do_quit('')
+ 
+     ############################################################################
+     def do_pgs(self, line):
+@@ -2016,6 +2017,7 @@
+         self.update_status('Running check on events', level='check')
+         
+         reweight_cmd.check_events()
++        reweight_cmd.do_quit()
+         
+     ############################################################################
+     def complete_check_events(self, text, line, begidx, endidx):

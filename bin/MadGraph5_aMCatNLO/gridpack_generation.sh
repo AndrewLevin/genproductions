@@ -148,6 +148,7 @@ if [ ! -d ${AFS_GEN_FOLDER}/${name}_gridpack ]; then
 
   patch -l -p0 -i $PRODHOME/patches/mgfixes.patch
   patch -l -p0 -i $PRODHOME/patches/models.patch
+  patch -l -p0 -i $PRODHOME/patches/destructorfix.patch
 
   cd $MGBASEDIRORIG
 
@@ -207,7 +208,6 @@ if [ ! -d ${AFS_GEN_FOLDER}/${name}_gridpack ]; then
   PATH=`${LHAPDFCONFIG} --prefix`/bin:${PATH} make
   cd ..
   
-
   #load extra models if needed
   if [ -e $CARDSDIR/${name}_extramodels.dat ]; then
     echo "Loading extra models specified in $CARDSDIR/${name}_extramodels.dat"
@@ -366,15 +366,15 @@ cd processtmp
 echo "copying run_card.dat file"
 cp $CARDSDIR/${name}_run_card.dat ./Cards/run_card.dat
 
-if [ -e $CARDSDIR/${name}_param_card.dat ]; then
-    echo "copying param_card.dat file"
-    cp $CARDSDIR/${name}_param_card.dat ./Cards/param_card.dat
-fi
-
 #copy provided custom fks params or cuts
 if [ -e $CARDSDIR/${name}_cuts.f ]; then
   echo "copying custom cuts.f file"
   cp $CARDSDIR/${name}_cuts.f ./SubProcesses/cuts.f
+fi
+
+if [ -e $CARDSDIR/${name}_param_card.dat ]; then
+    echo "copying param_card.dat file"
+    cp $CARDSDIR/${name}_param_card.dat ./Cards/param_card.dat
 fi
 
 if [ -e $CARDSDIR/${name}_FKS_params.dat ]; then
@@ -467,6 +467,7 @@ else
 #   set +e
   cat makegrid.dat | ./bin/generate_events pilotrun
 
+
   cd $WORKDIR
   
 #   echo "creating debug tarball"
@@ -502,15 +503,19 @@ else
   if [ -e $CARDSDIR/${name}_reweight_card.dat ]; then
       pwd
       echo "preparing reweighting step"
-      mkdir -p madevent/Events/pilotrun
-      cp $WORKDIR/unweighted_events.lhe.gz madevent/Events/pilotrun
+      #mkdir -p madevent/Events/pilotrun
+      #cp $WORKDIR/unweighted_events.lhe.gz madevent/Events/pilotrun
+      ./run.sh  20000 1
       echo "f2py_compiler=" `which gfortran` >> ./madevent/Cards/me5_configuration.txt
       #need to set library path or f2py won't find libraries
       export LIBRARY_PATH=$LD_LIBRARY_PATH
       cd madevent
-      bin/madevent reweight pilotrun
+      gzip -d Events/GridRun_1/events.lhe.gz 
+      mv Events/GridRun_1/events.lhe Events/GridRun_1/unweighted_events.lhe
+      bin/madevent reweight GridRun_1
       cd ..      
   fi
+
 
   echo "preparing final gridpack"
   
