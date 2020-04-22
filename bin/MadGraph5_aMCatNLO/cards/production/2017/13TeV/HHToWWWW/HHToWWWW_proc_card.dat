@@ -1,4 +1,4 @@
-import model sm
+import model heft
 
 define p = g u c d s b u~ c~ d~ s~ b~
 define j = g u c d s b u~ c~ d~ s~ b~
@@ -7,7 +7,7 @@ define l- = e- mu-
 define vl = ve vm
 define vl~ = ve~ vm~
 
-generate p p > h h > w+ w- w+ w-, w+ > l+ vl, w- > j j
-add process p p > h h > w+ w- w+ w-, w- > l- vl~, w+ > j j
+generate p p > h h > w+ w- w+ w- HIG = 1, w+ > l+ vl, w- > j j
+add process p p > h h > w+ w- w+ w- HIG = 1, w- > l- vl~, w+ > j j
 
 output HHToWWWW -nojpeg
